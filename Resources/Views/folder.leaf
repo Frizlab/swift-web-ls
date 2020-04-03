@@ -21,7 +21,7 @@ struct FolderContext : Encodable {
 
 #export("body"):
 	<h1>Contenu de #(folderPath)</h1>
-	#if(!fileNames.isEmpty):
+	#if(!isEmpty(fileNames)):
 		<h2>Fichiers</h2>
 		<ul>
 			#for(fileName in fileNames):
@@ -31,7 +31,7 @@ struct FolderContext : Encodable {
 	#else:
 		<h2>Pas de fichiers</h2>
 	#endif
-	#if(!subFolderNames.isEmpty):
+	#if(!isEmpty(subFolderNames)):
 		<h2>Dossiers</h2>
 		<ul>
 			#for(folder in subFolderNames):
