@@ -10,7 +10,6 @@ struct URLEncodeLeafTag : LeafTag {
 	static let name = "urlencode"
 	
 	func render(_ ctx: LeafContext) throws -> LeafData {
-		print(ctx)
 		guard let string = ctx.parameters.first?.string, ctx.parameters.count == 1 else {
 			throw Abort(.internalServerError)
 		}
