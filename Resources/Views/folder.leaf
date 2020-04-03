@@ -1,13 +1,46 @@
+#comment: The context structure
+struct FolderContext : Encodable {
+	var folderName: String?
+	var folderPath: String
+	var subFolderNames: [String]
+	var fileNames: [String]
+}
+#endcomment
 #extend("lib/master"):
 
 
 
-#export("title", "A Folder")
+#export("title"):
+	Fichiers
+	#if(folderName != nil):
+		– #(folderName)
+	#endif
+#endexport
 
 #export("additional_head_tags", "")
 
 #export("body"):
-	<h1>TODO</h1>
+	<h1>Contenu de #(folderPath)</h1>
+	#if(!fileNames.isEmpty):
+		<h2>Fichiers</h2>
+		<ul>
+			#for(fileName in fileNames):
+				<li><a href="#(folderPath)#if(folderPath != "/"):/#endif#(fileName)">#(fileName)</a></li>
+			#endfor
+		</ul>
+	#else:
+		<h2>Pas de fichiers</h2>
+	#endif
+	#if(!subFolderNames.isEmpty):
+		<h2>Dossiers</h2>
+		<ul>
+			#for(folder in subFolderNames):
+				<li><a href="#(folderPath)#if(folderPath != "/"):/#endif#(folder)">#(folder)</a></li>
+			#endfor
+		</ul>
+	#else:
+		<h2>Pas de dossiers</h2>
+	#endif
 #endexport
 
 
