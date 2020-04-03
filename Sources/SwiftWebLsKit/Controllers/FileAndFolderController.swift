@@ -25,17 +25,19 @@ public final class FileAndFolderController {
 			return request.eventLoop.makeFailedFuture(Abort(.forbidden))
 		}
 		
-		/* Create absolute file path */
-		let filePath = publicDirectory.appendingPathComponent(path.removingPercentEncoding ?? path).path
+		/* Create absolute file path URL */
+		let fileURL = publicDirectory.appendingPathComponent(path.removingPercentEncoding ?? path)
 		
 		/* Check if file exists and is not a directory */
 		var isDir: ObjCBool = false
-		guard FileManager.default.fileExists(atPath: filePath, isDirectory: &isDir), !isDir.boolValue else {
+		guard FileManager.default.fileExists(atPath: fileURL.path, isDirectory: &isDir), !isDir.boolValue else {
 			return request.view.render("folder").flatMap{ $0.encodeResponse(for: request) }
 		}
 		
 		/* Stream the file */
-		let res = request.fileio.streamFile(at: filePath)
+		let res = request.fileio.streamFile(at: fileURL.path)
+		res.headers.contentType = .binary
+		res.headers.contentDisposition = .init(.attachment, name: fileURL.deletingPathExtension().lastPathComponent, filename: fileURL.lastPathComponent)
 		return request.eventLoop.makeSucceededFuture(res)
 	}
 	
