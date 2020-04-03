@@ -1,0 +1,7 @@
+<html>
+	<head>
+		<title>#import("title")</title>
+		#import("additional_head_tags")
+	</head>
+	<body>#import("body")</body>
+</html>

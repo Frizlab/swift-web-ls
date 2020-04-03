@@ -1,0 +1,15 @@
+#extend("lib/master"):
+
+
+
+#export("title", "A Folder")
+
+#export("additional_head_tags", "")
+
+#export("body"):
+	<h1>TODO</h1>
+#endexport
+
+
+
+#endextend
