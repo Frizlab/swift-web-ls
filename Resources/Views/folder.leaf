@@ -18,7 +18,21 @@ struct FolderContext : Encodable {
 	#endif
 #endexport
 
-#export("additional_head_tags", "")
+#export("additional_head_tags"):
+	<script type="text/javascript">
+function update_submit_button() {
+	var submit_button = document.getElementById("form_submit")
+	if (typeof submit_button === "undefined" || submit_button === null) {return}
+	
+	submit_button.disabled = true /* We enable the button at the end of the validation, when all tests pass */
+	
+	if (document.getElementById("name").value.length == 0) {return}
+	if (document.getElementById("file").value.length == 0) {return}
+	
+	submit_button.disabled = false
+}
+	</script>
+#endexport
 
 #export("body"):
 	<h1>Contenu de #(urldecode(folderPath))</h1>
@@ -43,9 +57,9 @@ struct FolderContext : Encodable {
 		<h2>Envoyer un fichier au professeur</h2>
 		<p>
 			<form action="" method="post" enctype="multipart/form-data">
-				<label for="name">Prénom et nom : </label><input type="text" id="name" name="name"/><br/>
-				<label for="file">Sélectionner un fichier : </label><input type="file" id="file" name="file"/><br/>
-				<input type="submit" value="Envoyer"/>
+				<label for="name">Prénom et nom : </label><input type="text" id="name" name="name" onKeyUp="update_submit_button()"/><br/>
+				<label for="file">Sélectionner un fichier : </label><input type="file" id="file" name="file" onchange="update_submit_button()"/><br/>
+				<input type="submit" value="Envoyer" id="form_submit" disabled="disabled"/>
 			</form>
 		</p>
 	#endif
