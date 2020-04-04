@@ -8,7 +8,7 @@
 
 #export("body"):
 	<h1>Le fichier a bien été envoyé</h1>
-	<p><a href="">Return to the list of files</a></p>
+	<p><a href="">Retourner à la liste des fichiers</a></p>
 #endexport
 
 
