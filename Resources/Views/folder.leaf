@@ -21,7 +21,7 @@ struct FolderContext : Encodable {
 #export("additional_head_tags", "")
 
 #export("body"):
-	<h1>Contenu de #(folderPath)</h1>
+	<h1>Contenu de #(urldecode(folderPath))</h1>
 	#if(!isEmpty(fileNames)):
 		<h2>Fichiers</h2>
 		<ul>

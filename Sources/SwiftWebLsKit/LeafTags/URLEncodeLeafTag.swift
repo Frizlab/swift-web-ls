@@ -20,3 +20,20 @@ struct URLEncodeLeafTag : LeafTag {
 	}
 	
 }
+
+
+struct URLDecodeLeafTag : LeafTag {
+	
+	static let name = "urldecode"
+	
+	func render(_ ctx: LeafContext) throws -> LeafData {
+		guard let string = ctx.parameters.first?.string, ctx.parameters.count == 1 else {
+			throw Abort(.internalServerError)
+		}
+		guard let urlDecoded = string.removingPercentEncoding else {
+			throw Abort(.internalServerError)
+		}
+		return .string(urlDecoded)
+	}
+	
+}
