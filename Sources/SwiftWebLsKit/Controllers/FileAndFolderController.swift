@@ -87,8 +87,8 @@ public final class FileAndFolderController {
 		 * but alas, it seems it does! */
 		let fileAndUser = try request.content.decode(FileAndUser.self)
 		
-		guard !fileAndUser.name.isEmpty else {
-			throw "the username is required"
+		guard !fileAndUser.name.isEmpty && !fileAndUser.file.filename.isEmpty else {
+			throw "the username and the file are required"
 		}
 		
 		let saferUserName = pathSafeStr(from: fileAndUser.name)
