@@ -1,0 +1,16 @@
+#extend("lib/master"):
+
+
+
+#export("title", "Envoi réussi")
+
+#export("additional_head_tags", "")
+
+#export("body"):
+	<h1>Le fichier a bien été envoyé</h1>
+	<p><a href="">Retourner à la liste des fichiers</a></p>
+#endexport
+
+
+
+#endextend

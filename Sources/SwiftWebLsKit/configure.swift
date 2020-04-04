@@ -11,6 +11,7 @@ public func configure(_ app: Application) throws {
 	app.views.use(.leaf)
 	app.leaf.tags[IsEmptyLeafTag.name] = IsEmptyLeafTag()
 	app.leaf.tags[URLEncodeLeafTag.name] = URLEncodeLeafTag()
-	
+	app.leaf.tags[URLDecodeLeafTag.name] = URLDecodeLeafTag()
+
 	try routes(app)
 }
