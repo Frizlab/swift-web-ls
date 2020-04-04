@@ -4,6 +4,7 @@ struct FolderContext : Encodable {
 	var folderPath: String
 	var subFolderNames: [String]
 	var fileNames: [String]
+	var allowUpload: Bool
 }
 #endcomment
 #extend("lib/master"):
@@ -28,8 +29,6 @@ struct FolderContext : Encodable {
 				<li><a href="#urlencode(fileName)">#(fileName)</a></li>
 			#endfor
 		</ul>
-	#else:
-		<h2>Pas de fichiers</h2>
 	#endif
 	#if(!isEmpty(subFolderNames)):
 		<h2>Dossiers</h2>
@@ -38,8 +37,17 @@ struct FolderContext : Encodable {
 				<li><a href="#urlencode(folder)">#(folder)</a></li>
 			#endfor
 		</ul>
-	#else:
-		<h2>Pas de dossiers</h2>
+	#endif
+	#if(allowUpload):
+		<hr>
+		<h2>Envoyer un fichier au professeur</h2>
+		<p>
+			<form action="" method="post" enctype="multipart/form-data">
+				<label for="name">Prénom et nom : </label><input type="text" id="name" name="name"/><br/>
+				<label for="file">Sélectionner un fichier : </label><input type="file" id="file" name="file"/><br/>
+				<input type="submit" value="Envoyer"/>
+			</form>
+		</p>
 	#endif
 #endexport
 
