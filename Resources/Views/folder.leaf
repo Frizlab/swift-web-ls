@@ -34,7 +34,7 @@ struct FolderContext : Encodable {
 		<h2>Dossiers</h2>
 		<ul>
 			#for(folder in subFolderNames):
-				<li><a href="#urlencode(folder)">#(folder)</a></li>
+				<li><a href="#urlencode(folder)/">#(folder)</a></li>
 			#endfor
 		</ul>
 	#endif
