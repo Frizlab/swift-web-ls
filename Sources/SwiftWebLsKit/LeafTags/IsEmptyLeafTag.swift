@@ -11,7 +11,7 @@ struct IsEmptyLeafTag : LeafTag {
 	
 	func render(_ ctx: LeafContext) throws -> LeafData {
 		guard let array = ctx.parameters.first?.array, ctx.parameters.count == 1 else {
-			throw Abort(.internalServerError)
+			throw "parameter given to isEmpty leaf tag is not an array"
 		}
 		return .bool(array.isEmpty)
 	}

@@ -56,7 +56,7 @@ public final class FileAndFolderController {
 				guard !u.lastPathComponent.hasPrefix(".") else {continue}
 				
 				guard let isDir = try u.resourceValues(forKeys: [.isDirectoryKey]).isDirectory else {
-					throw Abort(.internalServerError)
+					throw "Cannot retrieve URL directory value"
 				}
 				if isDir {
 					context.subFolderNames.append(u.lastPathComponent)
@@ -102,7 +102,7 @@ public final class FileAndFolderController {
 		try FileManager.default.createDirectory(at: folderURL, withIntermediateDirectories: true, attributes: nil)
 		guard FileManager.default.createFile(atPath: fileURL.path, contents: nil, attributes: nil) else {
 			request.logger.error("Cannot create file at path \(fileURL.path)")
-			throw Abort(.internalServerError)
+			throw "Cannot create file"
 		}
 		
 		let fh = try NIOFileHandle(path: fileURL.path, mode: .write)
