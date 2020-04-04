@@ -25,6 +25,10 @@ public final class FileAndFolderController {
 		}
 		
 		if isDir.boolValue {
+			guard path.hasSuffix("/") || path.isEmpty else {
+				return request.eventLoop.makeSucceededFuture(request.redirect(to: path + "/"))
+			}
+			
 			struct FolderContext : Encodable {
 				var folderName: String?
 				var folderPath: String
@@ -121,13 +125,13 @@ public final class FileAndFolderController {
 			path = String(path.dropFirst())
 		}
 		
-		/* We also remove the trailing slashes (mostly for cosmetic purpose… don’t remove it though!) */
-		while path.hasSuffix("/") {
+		/* We also remove the double trailing slashes */
+		while path.hasSuffix("//") {
 			path = String(path.dropLast())
 		}
 		
 		/* Protect against relative paths */
-		guard !path.contains("../") else {
+		guard !path.contains("/../") && !path.hasPrefix("../") && !path.hasSuffix("/..") && path != ".." else {
 			throw Abort(.forbidden)
 		}
 		
