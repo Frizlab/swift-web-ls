@@ -49,6 +49,10 @@ struct FolderContext : Encodable {
 			</form>
 		</p>
 	#endif
+	#if(folderPath != "/"):
+		<hr>
+		<p><a href="..">Revenir au dossier parent</a></p>
+	#endif
 #endexport
 
 
