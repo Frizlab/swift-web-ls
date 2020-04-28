@@ -5,6 +5,7 @@ struct FolderContext : Encodable {
 	var subFolderNames: [String]
 	var fileNames: [String]
 	var allowUpload: Bool
+	var showParent: Bool
 }
 #endcomment
 #extend("lib/master"):
@@ -63,7 +64,7 @@ function update_submit_button() {
 			</form>
 		</p>
 	#endif
-	#if(folderPath != "/"):
+	#if(showParent):
 		<hr>
 		<p><a href="..">Revenir au dossier parent</a></p>
 	#endif

@@ -35,6 +35,7 @@ public final class FileAndFolderController {
 				var subFolderNames: [String]
 				var fileNames: [String]
 				var allowUpload: Bool
+				var showParent: Bool
 			}
 			
 			var context = FolderContext(
@@ -42,7 +43,8 @@ public final class FileAndFolderController {
 				folderPath: "/" + path,
 				subFolderNames: [],
 				fileNames: [],
-				allowUpload: false
+				allowUpload: false,
+				showParent: !path.isEmpty
 			)
 			
 			/* List files and folders in the folder */
@@ -50,6 +52,9 @@ public final class FileAndFolderController {
 			for u in elts {
 				if try u.lastPathComponent == ".uploads" && u.resourceValues(forKeys: [.isDirectoryKey]).isDirectory == true {
 					context.allowUpload = true
+				}
+				if u.lastPathComponent == ".hide_parent" {
+					context.showParent = false
 				}
 				
 				/* Filter out hidden files */
