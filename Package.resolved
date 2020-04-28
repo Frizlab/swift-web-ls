@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/vapor/async-kit.git",
         "state": {
           "branch": null,
-          "revision": "1f145cffe2109d0fc420bc03b31dacf9de2c7573",
-          "version": "1.0.0"
+          "revision": "48a719dec79ea3cbbc71ca9b29f69df7cd5794cd",
+          "version": "1.0.1"
         }
       },
       {
@@ -42,8 +42,8 @@
         "repositoryURL": "https://github.com/vapor/leaf-kit.git",
         "state": {
           "branch": null,
-          "revision": "b6c8edd71a5387c4b48ecafe5be4cadd4f896193",
-          "version": "1.0.0-rc.1.4"
+          "revision": "6e579ba3b9497a8e85d3a7a506fe0c943799037c",
+          "version": "1.0.0-rc.1.6"
         }
       },
       {
@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/vapor/routing-kit.git",
         "state": {
           "branch": null,
-          "revision": "35da702471cbcc308f58d38aa8fea971fa3fb166",
-          "version": "4.0.0"
+          "revision": "e7f2d5bd36dc65a9edb303541cb678515a7fece3",
+          "version": "4.1.0"
         }
       },
       {
@@ -132,8 +132,8 @@
         "repositoryURL": "https://github.com/vapor/vapor.git",
         "state": {
           "branch": null,
-          "revision": "ad2aeccfbdd1275c0a8817a8024f0b98d65e3880",
-          "version": "4.0.0-rc.3.12"
+          "revision": "7f6c8277b8cbe4381d00ddcef3b898c820780324",
+          "version": "4.4.0"
         }
       },
       {
